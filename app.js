@@ -12,6 +12,6 @@ app.get('/api', (req, res) => {
     res.send('Hello from the API!');
   });
 
-app.listen(8080, () => {
-  console.log(`Running on http://localhost:8080`);
+app.listen(8080, "0.0.0.0", () => {
+  console.log(`Running on http://0.0.0.0:8080`);
 });
