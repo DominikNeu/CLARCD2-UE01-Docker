@@ -1,0 +1,14 @@
+{
+    "name": "clarcd2-ue01-docker-nodejs",
+    "version": "1.0.0",
+    "description": "Node.js WebApp on Docker",
+    "author": "Dominik Neubauer <dominik.neubauer@edu.fh-joanneum.at>",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1",
+      "path": "0.12.7"
+    }
+  }
