@@ -1,17 +1,27 @@
-const express = require('express');
-const path = require('path');
+const http = require('http');
+const fs = require('fs');
 
-// App
-const app = express();
-app.get('/', (req, res) => {
-  //res.send('Hello World');
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
+const requestListener = function (req, res) {
+    if (req.url === '/') {
+        res.writeHead(200);
+        res.end('Health probe sucessful!'); 
+    }
+    
+    if (req.url === '/home') {
+        fs.readFile('index.html',function (err, data){
+            res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+            res.write(data);
+            res.end();
+        });
+    }
+    
+    if (req.url === '/api') {
+        res.writeHead(200);
+        res.end('Hello from the API!'); 
+    }
+    
+    
+}
 
-app.get('/api', (req, res) => {
-    res.send('Hello from the API!');
-  });
-
-app.listen(8080, "0.0.0.0", () => {
-  console.log(`Running on http://0.0.0.0:8080`);
-});
+const server = http.createServer(requestListener);
+server.listen(8080);
